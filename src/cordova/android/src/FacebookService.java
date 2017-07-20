@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.facebook.AccessToken;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -59,6 +60,7 @@ public class FacebookService  {
 
     public FacebookService(Context ctx) {
         FacebookSdk.sdkInitialize(ctx.getApplicationContext());
+        AppEventsLogger.activateApp(ctx.getApplicationContext());
         _fbCallbackManager = CallbackManager.Factory.create();
 
         LoginManager.getInstance().registerCallback(_fbCallbackManager, new FacebookCallback<LoginResult>() {
