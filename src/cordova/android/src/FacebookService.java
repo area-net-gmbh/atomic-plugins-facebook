@@ -57,11 +57,13 @@ public class FacebookService  {
     private Runnable _profileChangeTask;
     private ArrayList<SessionCallback> _sessionCallbacks = new ArrayList<SessionCallback>();
     private JSONObject _params;
+    private Context _ctx;
 
     public FacebookService(Context ctx) {
         FacebookSdk.sdkInitialize(ctx.getApplicationContext());
         AppEventsLogger.activateApp(ctx.getApplicationContext());
         _fbCallbackManager = CallbackManager.Factory.create();
+        this._ctx = ctx;
 
         LoginManager.getInstance().registerCallback(_fbCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -99,11 +101,17 @@ public class FacebookService  {
             this.processSessionChange(AccessToken.getCurrentAccessToken(), null);
         }
 
+        /*if (params.has("autoLogAppEvents")){
+            if(params.get("autoLogAppEvents").getAsBoolean()){
+                AppEventsLogger.activateApp(ctx.getApplicationContext());
+            }
+        }*/
+
     }
 
     public void logEvent(String name)
     {
-        AppEventsLogger logger = AppEventsLogger.newLogger(ctx.getApplicationContext());
+        AppEventsLogger logger = AppEventsLogger.newLogger(this._ctx.getApplicationContext());
         logger.logEvent(name);
 
     }
