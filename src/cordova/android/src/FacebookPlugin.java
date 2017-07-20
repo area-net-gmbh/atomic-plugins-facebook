@@ -59,6 +59,13 @@ public class FacebookPlugin extends CordovaPlugin implements FacebookService.Ses
     }
 
     @SuppressWarnings("unused")
+    public void logEvent(CordovaArgs args, CallbackContext ctx) throws JSONException {
+        JSONObject params = args.optJSONObject(0);
+        _service.logEvent(params.optString("name", "AREANET_CUSTOM_EVENT"););
+        ctx.sendPluginResult(new PluginResult(PluginResult.Status.OK, (String) null));
+    }
+
+    @SuppressWarnings("unused")
     public void initialize(CordovaArgs args, CallbackContext ctx) throws JSONException {
         JSONObject params = args.optJSONObject(0);
         _service.initialize(params);

@@ -101,6 +101,13 @@ public class FacebookService  {
 
     }
 
+    public void logEvent(String name)
+    {
+        AppEventsLogger logger = AppEventsLogger.newLogger(ctx.getApplicationContext());
+        logger.logEvent(name);
+
+    }
+
     public void setOnLoginChangeListener(SessionCallback callback)
     {
         this._onLoginChangeCallback = callback;
