@@ -48,6 +48,23 @@ static NSDictionary * sessionToDic(LDFacebookSession * session)
 }
 
 
+-(void) logEvent(CDVInvokedUrlCommand*) command
+{
+    _service.delegate = self;
+    NSDictionary * params = [command argumentAtIndex:0 withDefault:@{} andClass:[NSDictionary class]];
+    
+    id value = [param objectForKey@"firstParam"];
+
+    if ([value isKindOfClass:[NSString class]]) {
+        NSString *name = (NSString *)id;
+        [_service logEvent:name];
+    }else {
+        [_service logEvent:@"AREANET_CUSTOM_EVENT"];
+    } 
+    
+    [self notify:command response:sessionToDic(nil) error:nil keep:NO];
+}
+
 -(void) initialize:(CDVInvokedUrlCommand*) command
 {
     _service.delegate = self;

@@ -33,6 +33,7 @@ typedef void (^LDFacebookCompletion)(NSDictionary * response, NSError * error);
 
 +(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 -(void) initialize:(NSDictionary*)params;
+-(void) logEvent:(NSString*)name;
 -(BOOL) isLoggedIn;
 -(void) loginWithReadPermissions:(NSArray *) permissions fromViewController:(UIViewController *) vc completion:(LDFacebookSessionHandler) completion;
 -(void) logout;

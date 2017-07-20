@@ -104,9 +104,16 @@ NSDictionary * fbError(NSError* error)
 {
     self.params = params;
     FBSDKAccessToken * session = [FBSDKAccessToken currentAccessToken];
+    [FBSDKAppEvents activateApp];
     if (session) {
         [self processSessionChange:session error:nil handler:nil];
     }
+}
+
+-(void) logEvent:(NSString*) name
+{
+    [FBSDKAppEvents logEvent:name];
+
 }
 
 -(BOOL) isLoggedIn
