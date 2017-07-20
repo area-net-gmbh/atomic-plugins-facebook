@@ -53,7 +53,7 @@ static NSDictionary * sessionToDic(LDFacebookSession * session)
     _service.delegate = self;
     NSDictionary * params = [command argumentAtIndex:0 withDefault:@{} andClass:[NSDictionary class]];
     
-    id value = [params objectForKey@"name"];
+    id value = [params objectForKey:@"name"];
 
     if ([value isKindOfClass:[NSString class]]) {
         NSString *name = (NSString *)value;
